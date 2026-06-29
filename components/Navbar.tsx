@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Terminal, User, Trophy, LayoutDashboard, Target, Users, Settings, Crown } from "lucide-react";
+import { Terminal, User, Trophy, LayoutDashboard, Target, Users, Settings, Crown, LogOut } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
@@ -74,6 +74,12 @@ export default function Navbar() {
               <DropdownMenuItem asChild>
                 <Link href="/settings" className="cursor-pointer w-full flex items-center">
                   <Settings className="mr-2 h-4 w-4" /> Settings
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem asChild>
+                <Link href="/signin" className="cursor-pointer w-full flex items-center text-destructive focus:text-destructive">
+                  <LogOut className="mr-2 h-4 w-4" /> Log out
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>

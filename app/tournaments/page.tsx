@@ -5,7 +5,7 @@ import { TOURNAMENTS } from '@/lib/tournamentData';
 import type { Tournament, TournamentStatus } from '@/lib/tournamentData';
 import {
   Trophy, Zap, Clock, Users, ChevronRight,
-  Crown, Search, Filter, Sword, Lock, CheckCircle2,
+  Search, Filter, Sword, Lock, CheckCircle2,
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -212,10 +212,7 @@ export default function TournamentsPage() {
         <div className="container mx-auto px-4">
           <div className="relative flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <div className="flex items-center gap-3 mb-2">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 border border-primary/30">
-                  <Crown className="h-5 w-5 text-primary" />
-                </div>
+              <div className="mb-2">
                 <h1 className="text-3xl font-bold font-mono tracking-tight">Tournaments</h1>
               </div>
               <p className="text-muted-foreground max-w-lg">
@@ -247,30 +244,34 @@ export default function TournamentsPage() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8 space-y-8">
+      {/* ── Sticky Filter Bar ── */}
+      <div className="sticky top-16 z-30 border-b border-border/40 bg-background/90 backdrop-blur-md">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center gap-2 flex-wrap py-3">
+            <Filter className="h-4 w-4 text-muted-foreground shrink-0" />
+            {FILTER_TABS.map(tab => (
+              <button
+                key={tab.key}
+                onClick={() => setActiveFilter(tab.key)}
+                className={`rounded-full px-4 py-1.5 text-sm font-medium font-mono transition-all ${
+                  activeFilter === tab.key
+                    ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25'
+                    : 'bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground border border-border/50'
+                }`}
+              >
+                {tab.label}
+                {tab.key === 'live' && liveCnt > 0 && (
+                  <span className="ml-1.5 rounded-full bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5">{liveCnt}</span>
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 py-8 space-y-6">
         {/* My Live Match Banner */}
         <MyMatchBanner />
-
-        {/* Filter Tabs */}
-        <div className="flex items-center gap-2 flex-wrap">
-          <Filter className="h-4 w-4 text-muted-foreground shrink-0" />
-          {FILTER_TABS.map(tab => (
-            <button
-              key={tab.key}
-              onClick={() => setActiveFilter(tab.key)}
-              className={`rounded-full px-4 py-1.5 text-sm font-medium font-mono transition-all ${
-                activeFilter === tab.key
-                  ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25'
-                  : 'bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground border border-border/50'
-              }`}
-            >
-              {tab.label}
-              {tab.key === 'live' && liveCnt > 0 && (
-                <span className="ml-1.5 rounded-full bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5">{liveCnt}</span>
-              )}
-            </button>
-          ))}
-        </div>
 
         {/* Tournament Grid */}
         {filtered.length === 0 ? (

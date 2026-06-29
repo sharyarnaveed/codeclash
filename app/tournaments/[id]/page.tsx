@@ -1,13 +1,13 @@
 'use client';
 
-import { notFound, useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import Link from 'next/link';
 import { getTournamentById, MY_PARTICIPANT } from '@/lib/tournamentData';
 import type { Match, Participant } from '@/lib/tournamentData';
 import {
   Trophy, Zap, Clock, Users, ChevronLeft,
-  Crown, Sword, CheckCircle2, Circle, Terminal,
+  Sword, CheckCircle2, Circle, Terminal,
   Calendar, DollarSign, Shield, Play,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -41,7 +41,7 @@ function PlayerSlot({ player, isWinner, side }: { player: Participant | null; is
         </p>
         <p className="text-[10px] text-muted-foreground font-mono mt-0.5">#{player.rating}</p>
       </div>
-      {isWinner && <Crown className="h-3 w-3 text-amber-400 shrink-0" />}
+
     </div>
   );
 }
@@ -209,14 +209,19 @@ function JoinPrompt({ isJoined, isFull, onJoin }: { isJoined: boolean; isFull: b
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function TournamentDetailPage() {
-  const params = useParams();
-  const id = params?.id as string;
+  const params   = useParams();
+  const router   = useRouter();
+  const id       = params?.id as string;
 
   const tournament = getTournamentById(id);
-  if (!tournament) return notFound();
 
-  const [isJoined, setIsJoined] = useState(tournament.isJoined ?? false);
+  const [isJoined,  setIsJoined]  = useState(tournament?.isJoined ?? false);
   const [activeTab, setActiveTab] = useState<'bracket' | 'matches' | 'info'>('bracket');
+
+  if (!tournament) {
+    router.replace('/tournaments');
+    return null;
+  }
 
   const isFull = tournament.participants >= tournament.maxParticipants;
   const pct    = Math.round((tournament.participants / tournament.maxParticipants) * 100);

@@ -70,9 +70,9 @@ export default function SignIn() {
 
         <p className="text-center text-xs text-muted-foreground font-mono">
           By signing in you agree to our{" "}
-          <span className="underline underline-offset-4 cursor-pointer hover:text-foreground">Terms</span>{" "}
+          <Link href="/terms" className="underline underline-offset-4 hover:text-foreground transition-colors">Terms</Link>{" "}
           and{" "}
-          <span className="underline underline-offset-4 cursor-pointer hover:text-foreground">Privacy Policy</span>
+          <Link href="/privacy" className="underline underline-offset-4 hover:text-foreground transition-colors">Privacy Policy</Link>
         </p>
 
         <div className="text-center">
