@@ -107,19 +107,7 @@ export default function PrivacyPolicy() {
         }}
       />
 
-      {/* Header */}
-      <header className="sticky top-0 z-40 border-b border-border/40 bg-background/80 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
-          <Link href="/signin" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors group">
-            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-            <span className="text-sm font-mono">Back to Sign In</span>
-          </Link>
-          <div className="flex items-center gap-2">
-            <Terminal className="h-5 w-5 text-primary" />
-            <span className="font-black font-mono tracking-tighter text-lg">CodeClash</span>
-          </div>
-        </div>
-      </header>
+
 
       {/* Hero */}
       <section className="mx-auto max-w-4xl px-6 pt-16 pb-12 text-center">
@@ -210,7 +198,7 @@ export default function PrivacyPolicy() {
               Terms of Service
             </Link>
             {" "}· Back to{" "}
-            <Link href="/signin" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+            <Link href="/get-started" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
               Sign In
             </Link>
           </p>

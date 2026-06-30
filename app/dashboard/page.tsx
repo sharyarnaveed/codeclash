@@ -5,8 +5,21 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "rec
 import { Trophy, Swords, Target, Activity } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useEffect } from "react";
+import { account } from "@/lib/Appwrite";
 
 export default function Dashboard() {
+   useEffect(() => {
+ async function verify() {
+        const user = await account.get();
+
+        console.log(user);
+
+ }
+
+
+    verify();
+  }, []);
   return (
     <div className="container mx-auto px-4 py-8 space-y-8">
       <div className="flex justify-between items-center">

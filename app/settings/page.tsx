@@ -63,7 +63,7 @@ export default function Settings() {
                     variant="destructive"
                     size="sm"
                     className="gap-2 font-mono"
-                    onClick={() => router.push("/signin")}
+                    onClick={() => router.push("/get-started")}
                   >
                     <LogOut className="h-4 w-4" />
                     Log out

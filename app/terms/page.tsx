@@ -146,7 +146,7 @@ export default function TermsOfService() {
       {/* Header */}
       <header className="sticky top-0 z-40 border-b border-border/40 bg-background/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
-          <Link href="/signin" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors group">
+          <Link href="/get-started" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors group">
             <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
             <span className="text-sm font-mono">Back to Sign In</span>
           </Link>
@@ -246,7 +246,7 @@ export default function TermsOfService() {
               Privacy Policy
             </Link>
             {" "}· Back to{" "}
-            <Link href="/signin" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+            <Link href="/get-started" className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
               Sign In
             </Link>
           </p>

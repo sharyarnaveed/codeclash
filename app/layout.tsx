@@ -10,7 +10,7 @@ const queryClient = new QueryClient();
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const hideNav = pathname === '/codeclash/signin' || pathname === '/signin';
+  const hideNav = pathname === '/codeclash/get-started' || pathname === '/get-started';
   return (
     <html lang="en" className="dark">
       <body>
