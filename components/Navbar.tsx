@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 export default function Navbar() {
   const pathname = usePathname();
   const [authenticated, setAuthenticated] = useState(false);
+  const [userdata, setUserdata] = useState(null);
   const links = [
     { href: "/dashboard",    label: "Dashboard",   icon: LayoutDashboard },
     { href: "/challenges",   label: "Challenges",  icon: Target },
@@ -33,6 +34,8 @@ export default function Navbar() {
         try {
           const user = await account.get();
           setAuthenticated(!!user);
+          console.log("User is authenticated:", user);
+          setUserdata(user);
         } catch {
           // Guest users or network errors — treat as unauthenticated
           setAuthenticated(false);
@@ -42,6 +45,16 @@ export default function Navbar() {
     verify();
   }, []);
 
+  const handleLogout = async () => {
+    try {
+      await account.deleteSession("current");
+      setAuthenticated(false);
+      setUserdata(null);
+      window.location.href = "/get-started"; // Redirect to the get-started page after logout
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  }
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -88,14 +101,14 @@ export default function Navbar() {
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="relative h-8 w-8 rounded-full" data-testid="button-user-menu">
                     <Avatar className="h-8 w-8">
-                      <AvatarFallback className="bg-primary/20 text-primary font-mono font-bold">AC</AvatarFallback>
+                      <AvatarFallback className="bg-primary/20 text-primary font-mono font-bold">{userdata?.name ? userdata.name.charAt(0) : "GU"}</AvatarFallback>
                     </Avatar>
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56" align="end" forceMount>
                   <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
-                      <p className="text-sm font-medium leading-none">Alice Chen</p>
+                      <p className="text-sm font-medium leading-none">{userdata?.name || "Guest User"}</p>
                       <p className="text-xs leading-none text-muted-foreground font-mono">Rating: 2840</p>
                     </div>
                   </DropdownMenuLabel>
@@ -111,7 +124,7 @@ export default function Navbar() {
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem asChild>
+                  <DropdownMenuItem onClick={handleLogout}>
                     <Link href="/get-started" className="cursor-pointer w-full flex items-center text-destructive focus:text-destructive">
                       <LogOut className="mr-2 h-4 w-4" /> Log out
                     </Link>

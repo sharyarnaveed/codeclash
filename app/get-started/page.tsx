@@ -18,6 +18,18 @@ export default function GetStarted() {
       console.error("Error signing in with Google:", error);
     }
   }
+
+  const handleGitHubSignIn = () => {
+    try{
+      account.createOAuth2Session(
+        OAuthProvider.Github,
+      `${window.location.origin}/auth/callback`
+      )
+    }
+    catch (error) {
+      console.error("Error signing in with GitHub:", error);
+    }
+  }
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-sm space-y-8">
@@ -75,7 +87,7 @@ export default function GetStarted() {
             <Button
               data-testid="button-signin-github"
               className="w-full h-11 font-mono font-semibold bg-[#24292e] hover:bg-[#1a1f24] text-white border border-[#24292e] shadow-sm gap-3 transition-all duration-200"
-              asChild
+             onClick={handleGitHubSignIn}
             >
               <Link href="/dashboard">
                 <svg className="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="currentColor">
