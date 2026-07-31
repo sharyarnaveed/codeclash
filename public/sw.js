@@ -1,0 +1,6 @@
+// Clears stale service worker registrations from prior deployments.
+self.addEventListener('install', () => self.skipWaiting());
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(self.registration.unregister());
+});
