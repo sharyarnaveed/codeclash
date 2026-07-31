@@ -79,7 +79,7 @@ function MobileHamburger({
         glass
           ? 'border border-white/10 bg-black/60 text-white hover:border-white/20 hover:bg-black/80'
           : 'border border-white/[0.08] bg-white/[0.06] text-white/80 hover:bg-white/10 hover:text-white',
-        open && 'border-[#FF8C42]/50 bg-[#FF8C42]/10 text-[#FF8C42] shadow-[0_0_20px_rgba(255,140,66,0.2)]',
+        open && 'border-[#67BAF4]/50 bg-[#67BAF4]/10 text-[#67BAF4] shadow-[0_0_20px_rgba(103,186,244,0.2)]',
       )}
     >
       <span className="relative flex h-3.5 w-4 flex-col items-center justify-center">
@@ -156,12 +156,13 @@ export function FuturisticMobileNav({
         >
           <motion.div
             variants={panelVariants}
-            className="relative flex min-h-[100dvh] flex-col overflow-hidden bg-[#050505]"
+            className="relative flex min-h-[100dvh] flex-col overflow-hidden"
+            style={{ background: 'var(--hero-bg)' }}
           >
             {/* Solid base + subtle ambient glow */}
-            <div className="pointer-events-none absolute inset-0 bg-[#050505]" />
-            <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[#FF8C42]/8 blur-[100px]" />
-            <div className="pointer-events-none absolute -bottom-32 -left-16 h-64 w-64 rounded-full bg-[#4A90D9]/6 blur-[90px]" />
+            <div className="pointer-events-none absolute inset-0" style={{ background: 'var(--hero-bg)' }} />
+            <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[#67BAF4]/8 blur-[100px]" />
+            <div className="pointer-events-none absolute -bottom-32 -left-16 h-64 w-64 rounded-full bg-[#1E466B]/6 blur-[90px]" />
 
             {/* Header */}
             <div className="relative z-10 flex items-center justify-between px-5 pb-2 pt-5 sm:px-6 sm:pt-6">
@@ -170,10 +171,10 @@ export function FuturisticMobileNav({
                 onClick={() => setOpen(false)}
                 className="flex items-center gap-2.5"
               >
-                <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#FF8C42]/30 bg-[#FF8C42]/10">
-                  <Terminal className="h-3.5 w-3.5 text-[#FF8C42]" />
+                <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#67BAF4]/30 bg-[#67BAF4]/10">
+                  <Terminal className="h-3.5 w-3.5 text-[#67BAF4]" />
                 </div>
-                <span className="font-mono text-sm font-semibold tracking-tight text-white">
+                <span className="font-mono text-sm font-semibold tracking-tight text-foreground">
                   CodeClash
                 </span>
               </Link>
@@ -234,19 +235,19 @@ export function FuturisticMobileNav({
                         className={cn(
                           'group relative flex items-center gap-4 overflow-hidden rounded-2xl px-3 py-3.5 transition-all duration-300 sm:py-4',
                           active
-                            ? 'bg-white/[0.08] ring-1 ring-[#FF8C42]/40'
-                            : 'bg-white/[0.02] hover:bg-white/[0.06]',
+                            ? 'bg-[var(--hero-glass-bg)] ring-1 ring-[#67BAF4]/40'
+                            : 'bg-[var(--hero-glass-bg)] hover:bg-[color-mix(in_srgb,var(--hero-glass-bg)_60%,var(--hero-accent)_40%)]',
                         )}
                       >
                         {active && (
-                          <span className="absolute inset-y-2 left-0 w-0.5 rounded-full bg-[#FF8C42] shadow-[0_0_8px_rgba(255,140,66,0.6)]" />
+                          <span className="absolute inset-y-2 left-0 w-0.5 rounded-full bg-[#67BAF4] shadow-[0_0_8px_rgba(103,186,244,0.6)]" />
                         )}
                         <div
                           className={cn(
                             'flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border transition-colors duration-300',
                             active
-                              ? 'border-[#FF8C42]/30 bg-[#FF8C42]/15 text-[#FF8C42]'
-                              : 'border-white/10 bg-white/[0.03] text-white/50 group-hover:border-white/20 group-hover:text-white/80',
+                              ? 'border-[#67BAF4]/30 bg-[#67BAF4]/15 text-[#67BAF4]'
+                              : 'border-[var(--hero-glass-border)] bg-[var(--hero-glass-bg)] text-foreground/50 group-hover:text-foreground/80',
                           )}
                         >
                           <Icon className="h-4 w-4" strokeWidth={1.75} />
@@ -255,19 +256,19 @@ export function FuturisticMobileNav({
                           <p
                             className={cn(
                               'text-lg font-medium tracking-tight transition-colors sm:text-xl',
-                              active ? 'text-white' : 'text-white/90 group-hover:text-white',
+                              active ? 'text-foreground' : 'text-foreground/90 group-hover:text-foreground',
                             )}
                           >
                             {link.label}
                           </p>
-                          <p className="truncate text-xs text-white/50">{meta.tagline}</p>
+                          <p className="truncate text-xs landing-muted">{meta.tagline}</p>
                         </div>
                         <ArrowUpRight
                           className={cn(
                             'h-4 w-4 shrink-0 transition-all duration-300',
                             active
-                              ? 'text-[#FF8C42] opacity-100'
-                              : 'text-white/20 opacity-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-60',
+                              ? 'text-[#67BAF4] opacity-100'
+                              : 'text-foreground/20 opacity-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-60',
                           )}
                         />
                       </Link>

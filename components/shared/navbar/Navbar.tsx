@@ -17,6 +17,7 @@ import {
   NavigationMenuLink, NavigationMenuList,
 } from '@/components/ui/navigation-menu';
 import { FuturisticMobileNav } from '@/components/shared/navbar/FuturisticMobileNav';
+import { ThemeToggle } from '@/components/shared/theme-toggle';
 import { account } from '@/lib/Appwrite';
 import { useEffect, useState } from 'react';
 import { CommandPalette } from '@/components/shared/command-palette';
@@ -71,21 +72,21 @@ export default function Navbar({ variant = 'default' }: NavbarProps) {
   if (variant === 'glass') {
     return (
       <>
-        <nav className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-4 pt-3 sm:pt-4 pointer-events-none">
-          <div className="pointer-events-auto mx-auto flex w-full max-w-6xl items-center justify-between gap-2 rounded-full border border-white/10 bg-black/40 backdrop-blur-xl px-3 py-2 shadow-[0_0_40px_rgba(0,0,0,0.5)] md:w-auto md:max-w-none md:justify-center md:px-2 md:py-1.5">
-            <Link href="/" className="flex shrink-0 items-center gap-2 px-2 py-1 font-mono font-bold text-sm text-white transition-colors hover:text-[#FF8C42] sm:px-3 sm:py-1.5">
-              <Terminal className="h-4 w-4 text-[#FF8C42]" />
+        <nav className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-4 pt-3 sm:pt-4 pointer-events-none md:px-6 md:pt-5">
+          <div className="pointer-events-auto mx-auto flex w-full max-w-3xl items-center justify-between gap-2 rounded-full border landing-border px-4 py-2.5 shadow-[0_0_40px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-2xl md:h-14 md:w-[min(88vw,48rem)] md:max-w-none md:gap-4 md:px-6 md:py-0" style={{ background: 'var(--hero-nav-bg)' }}>
+            <Link href="/" className="flex shrink-0 items-center gap-1.5 px-1 py-1 font-mono text-sm font-bold text-foreground transition-colors hover:text-[#67BAF4] md:gap-2 md:px-0 md:py-0">
+              <Terminal className="h-4 w-4 text-[#67BAF4]" />
               <span>CodeClash</span>
             </Link>
 
-            <div className="hidden md:flex items-center">
+            <div className="hidden md:flex items-center gap-0.5">
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    'rounded-full px-4 py-2 text-sm transition-colors hover:text-white',
-                    isActive(link.href) ? 'text-white' : 'text-white/50',
+                    'rounded-full px-3 py-1.5 text-[13px] tracking-wide transition-colors hover:text-foreground',
+                    isActive(link.href) ? 'text-foreground' : 'landing-muted',
                   )}
                 >
                   {link.label}
@@ -93,17 +94,18 @@ export default function Navbar({ variant = 'default' }: NavbarProps) {
               ))}
             </div>
 
-            <div className="flex items-center gap-1 sm:gap-2 sm:pl-2">
+            <div className="flex items-center gap-1 sm:gap-2 sm:pl-2 md:pl-0">
+              <ThemeToggle glass />
               <div className="hidden sm:block">
                 {authenticated ? (
                   <Link href="/dashboard">
-                    <Button size="sm" className="h-8 rounded-full bg-white px-4 text-xs font-medium text-black hover:bg-white/90 sm:px-5">
+                    <Button size="sm" className="h-8 rounded-full btn-brand px-5 text-xs font-medium border-0 hover:opacity-90">
                       Dashboard
                     </Button>
                   </Link>
                 ) : (
                   <Link href="/get-started">
-                    <Button size="sm" className="h-8 rounded-full bg-white px-4 text-xs font-medium text-black hover:bg-white/90 sm:px-5">
+                    <Button size="sm" className="h-8 rounded-full btn-brand px-5 text-xs font-medium border-0 hover:opacity-90">
                       Get Started
                     </Button>
                   </Link>

@@ -29,7 +29,7 @@ export function CompanyLogoMark({ name, Icon, src, iconClassName }: CompanyLogo)
         src={src}
         alt=""
         aria-hidden
-        className={cn(className, 'brightness-0 invert opacity-35')}
+        className={cn(className, 'opacity-35 dark:brightness-0 dark:invert')}
       />
     );
   }
@@ -45,20 +45,20 @@ function LogoMarqueeStrip({ duplicate }: { duplicate?: boolean }) {
       className="flex shrink-0 items-center gap-8 px-6 sm:gap-12 sm:px-10 md:gap-14"
       aria-hidden={duplicate}
     >
-      <span className="whitespace-nowrap text-[11px] font-mono uppercase tracking-[0.2em] text-white/40 sm:text-xs sm:tracking-[0.25em]">
+      <span className="whitespace-nowrap text-[11px] font-mono uppercase tracking-[0.2em] landing-muted sm:text-xs sm:tracking-[0.25em]">
         Trusted by engineers at
       </span>
-      <span className="h-1 w-1 shrink-0 rounded-full bg-white/20" aria-hidden />
+      <span className="h-1 w-1 shrink-0 rounded-full bg-foreground/20" aria-hidden />
       {TRUSTED_BY_LOGOS.map((logo) => (
         <div
           key={`${duplicate ? 'dup-' : ''}${logo.name}`}
-          className="flex shrink-0 items-center text-white/35"
+          className="flex shrink-0 items-center landing-muted"
           aria-label={duplicate ? undefined : logo.name}
         >
           <CompanyLogoMark {...logo} />
         </div>
       ))}
-      <span className="h-1 w-1 shrink-0 rounded-full bg-white/20" aria-hidden />
+      <span className="h-1 w-1 shrink-0 rounded-full bg-foreground/20" aria-hidden />
     </div>
   );
 }
