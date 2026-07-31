@@ -21,8 +21,8 @@ const footerLinks = {
 export function Footer() {
   return (
     <footer className="border-t border-white/10 bg-black">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+      <div className="container mx-auto px-4 py-12 sm:py-16">
+        <div className="mb-10 grid grid-cols-2 gap-6 sm:mb-12 sm:gap-8 md:grid-cols-4">
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-2 font-mono font-bold text-xl text-white mb-4">
               <Terminal className="h-5 w-5 text-primary" />

@@ -8,6 +8,7 @@ import { ScrollReveal } from '@/components/shared/motion';
 import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 import { useHeroReady } from '@/components/marketing/hero-ready-context';
+import { CompanyLogoMark, LogoMarquee, TRUSTED_BY_LOGOS } from '@/components/marketing/company-logos';
 
 function HeroBubblesMount(props: { onProgress?: (p: number) => void; onReady?: () => void }) {
   const { reportProgress } = useHeroReady();
@@ -46,21 +47,21 @@ export function HeroSection() {
   }, [reportProgress]);
 
   return (
-    <section className="relative flex flex-col items-center justify-center overflow-hidden min-h-screen">
+    <section className="relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden">
       <HeroBubblesMount onProgress={reportProgress} onReady={reportReady} />
 
       {/* Corner stats — pinned to viewport edges, outside headline area */}
       <FloatingStat
         label="+2.4k active competitors"
-        className={`absolute top-24 left-4 md:left-8 hidden sm:block z-10 pointer-events-none transition-opacity duration-700 ${isReady ? 'opacity-100' : 'opacity-0'}`}
+        className={`pointer-events-none absolute top-20 left-3 z-10 hidden sm:block md:top-24 md:left-8 transition-opacity duration-700 ${isReady ? 'opacity-100' : 'opacity-0'}`}
       />
       <FloatingStat
         label="+150 contests hosted"
-        className={`absolute top-24 right-4 md:right-8 hidden sm:block z-10 pointer-events-none transition-opacity duration-700 ${isReady ? 'opacity-100' : 'opacity-0'}`}
+        className={`pointer-events-none absolute top-20 right-3 z-10 hidden sm:block md:top-24 md:right-8 transition-opacity duration-700 ${isReady ? 'opacity-100' : 'opacity-0'}`}
       />
       <FloatingStat
         label="+50k submissions judged"
-        className={`absolute bottom-28 left-4 md:left-8 hidden md:block z-10 pointer-events-none transition-opacity duration-700 ${isReady ? 'opacity-100' : 'opacity-0'}`}
+        className={`pointer-events-none absolute bottom-24 left-3 z-10 hidden md:block md:bottom-28 md:left-8 transition-opacity duration-700 ${isReady ? 'opacity-100' : 'opacity-0'}`}
       />
 
       {/* Side copy — bottom-right corner, clear of headline */}
@@ -80,19 +81,19 @@ export function HeroSection() {
         </div>
       </motion.div>
 
-      <div className="relative z-20 w-full max-w-6xl mx-auto px-4 pt-24 pb-24 flex flex-col items-center justify-center min-h-screen">
+      <div className="relative z-20 mx-auto flex min-h-[100dvh] w-full max-w-6xl flex-col items-center justify-center px-4 pt-20 pb-16 sm:pt-24 sm:pb-24">
         {/* Headline — isolated layer, nothing overlaps it */}
-        <div className="relative w-full py-12 md:py-16">
+        <div className="relative w-full py-8 sm:py-12 md:py-16">
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="relative z-30 text-[clamp(3rem,10vw,7rem)] font-light leading-[0.95] tracking-tight text-white select-none drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]"
+            className="relative z-30 select-none font-hero text-[clamp(3rem,13vw,8.5rem)] font-black leading-[0.92] tracking-[0.04em] text-white drop-shadow-[0_2px_16px_rgba(0,0,0,0.85)]"
           >
             <span className="block text-left">Where</span>
-            <span className="block text-right pr-4 md:pr-16">Code</span>
-            <span className="block text-left pl-8 md:pl-24 mt-2">Meets</span>
-            <span className="block text-center mt-2">Competition</span>
+            <span className="block pr-2 text-right sm:pr-4 md:pr-16">Code</span>
+            <span className="mt-1 block pl-4 text-left sm:mt-2 sm:pl-8 md:pl-24">Meets</span>
+            <span className="mt-1 block text-center sm:mt-2">Competition</span>
           </motion.h1>
         </div>
 
@@ -101,16 +102,16 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ delay: 0.2, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="flex justify-center mt-2 relative z-30"
+          className="relative z-30 mt-2 flex w-full justify-center px-2 sm:px-0"
         >
-          <div className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-xl p-1.5 shadow-[0_0_40px_rgba(255,140,66,0.08)]">
-            <Link href="/contests">
-              <button className="rounded-full px-6 py-3 text-sm text-white/70 hover:text-white transition-colors">
+          <div className="flex w-full max-w-sm flex-col items-stretch gap-1.5 rounded-2xl border border-white/10 bg-white/[0.04] p-1.5 shadow-[0_0_40px_rgba(255,140,66,0.08)] backdrop-blur-xl sm:max-w-none sm:flex-row sm:items-center sm:rounded-full">
+            <Link href="/contests" className="w-full sm:w-auto">
+              <button className="w-full rounded-full px-5 py-3 text-sm text-white/70 transition-colors hover:text-white sm:px-6">
                 Explore Contests
               </button>
             </Link>
-            <Link href="/get-started">
-              <button className="rounded-full px-8 py-3 text-sm font-medium text-black bg-gradient-to-r from-[#FF8C42] to-[#FFB088] hover:from-[#FF7043] hover:to-[#FF9A6C] transition-all shadow-[0_0_30px_rgba(255,140,66,0.35)]">
+            <Link href="/get-started" className="w-full sm:w-auto">
+              <button className="w-full rounded-full bg-gradient-to-r from-[#FF8C42] to-[#FFB088] px-6 py-3 text-sm font-medium text-black shadow-[0_0_30px_rgba(255,140,66,0.35)] transition-all hover:from-[#FF7043] hover:to-[#FF9A6C] sm:px-8">
                 Get Started
               </button>
             </Link>
@@ -129,39 +130,44 @@ export function HeroSection() {
 }
 
 export function LogoBarSection() {
-  const logos = ['Vercel', 'Stripe', 'GitHub', 'Linear', 'Amazon', 'Google'];
   return (
-    <section className="relative z-10 px-4 -mt-8 mb-8">
-      <ScrollReveal>
-        <div className="max-w-3xl mx-auto rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl px-8 py-6">
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
-            {logos.map((logo) => (
-              <span
-                key={logo}
-                className="text-sm md:text-base font-medium text-white/30 hover:text-white/60 transition-colors cursor-default"
-              >
-                {logo}
-              </span>
-            ))}
+    <section
+      className="relative z-10 overflow-hidden border-y border-white/[0.06] bg-white/[0.02] py-4 sm:-mt-12 sm:py-5 md:-mt-16"
+      aria-label="Trusted by engineers at leading companies"
+    >
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-black via-black/80 to-transparent sm:w-24" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-black via-black/80 to-transparent sm:w-24" />
+
+      <div className="motion-reduce:hidden">
+        <LogoMarquee />
+      </div>
+
+      <div className="hidden motion-reduce:flex flex-wrap items-center justify-center gap-x-8 gap-y-4 px-4 sm:gap-x-10">
+        <span className="w-full text-center text-xs font-mono uppercase tracking-[0.25em] text-white/40">
+          Trusted by engineers at
+        </span>
+        {TRUSTED_BY_LOGOS.map((logo) => (
+          <div key={logo.name} className="flex items-center text-white/35" aria-label={logo.name}>
+            <CompanyLogoMark {...logo} />
           </div>
-        </div>
-      </ScrollReveal>
+        ))}
+      </div>
     </section>
   );
 }
 
 export function SecondaryCTASection() {
   return (
-    <section className="relative z-10 py-12 px-4 border-t border-white/[0.06]">
+    <section className="relative z-10 border-t border-white/[0.06] px-4 py-10 sm:py-12">
       <ScrollReveal>
-        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
-          <p className="text-sm md:text-base text-white/50 text-center sm:text-left max-w-md">
+        <div className="mx-auto flex max-w-4xl flex-col items-center justify-between gap-6 sm:flex-row">
+          <p className="max-w-md text-center text-sm text-white/50 sm:text-left md:text-base">
             Competing at the highest level with cutting-edge judging and real-time leaderboards.
           </p>
-          <Link href="/contests">
+          <Link href="/contests" className="w-full sm:w-auto">
             <Button
               variant="outline"
-              className="rounded-full px-8 border-[#FF8C42]/40 text-white hover:border-[#FF8C42] hover:bg-[#FF8C42]/10 shadow-[0_0_20px_rgba(255,140,66,0.1)]"
+              className="w-full rounded-full border-[#FF8C42]/40 px-8 text-white shadow-[0_0_20px_rgba(255,140,66,0.1)] hover:border-[#FF8C42] hover:bg-[#FF8C42]/10 sm:w-auto"
             >
               Try a Contest
             </Button>
@@ -190,21 +196,21 @@ export function FeaturesSection() {
   ];
 
   return (
-    <section className="py-24 px-4 border-t border-white/[0.06]">
+    <section className="border-t border-white/[0.06] px-4 py-16 sm:py-20 md:py-24">
       <div className="container mx-auto max-w-5xl">
-        <ScrollReveal className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-light text-white mb-3">Our Benefits</h2>
-          <p className="text-white/40 text-sm max-w-md mx-auto">
+        <ScrollReveal className="mb-10 text-center sm:mb-16">
+          <h2 className="mb-3 text-2xl font-light text-white sm:text-3xl md:text-4xl">Our Benefits</h2>
+          <p className="mx-auto max-w-md text-sm text-white/40">
             Everything you need to compete, build, and win — in one premium platform.
           </p>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {benefits.map((b, i) => (
             <ScrollReveal key={b.title} delay={i * 0.1}>
               {b.featured ? (
-                <div className="flex flex-col items-center text-center h-full">
-                  <div className="w-full aspect-square max-w-[220px] mx-auto mb-6 rounded-3xl overflow-hidden relative bg-black">
+                <div className="flex h-full flex-col items-center text-center">
+                  <div className="relative mx-auto mb-6 aspect-square w-full max-w-[180px] overflow-hidden rounded-3xl bg-black sm:max-w-[220px]">
                     <div className="benefit-blob absolute inset-0" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   </div>
@@ -212,9 +218,9 @@ export function FeaturesSection() {
                   <p className="text-sm text-white/40 leading-relaxed">{b.desc}</p>
                 </div>
               ) : (
-                <div className="glass-card p-8 h-full flex flex-col justify-center">
-                  <h3 className="text-lg font-medium text-white mb-4">{b.title}</h3>
-                  <p className="text-sm text-white/40 leading-relaxed">{b.desc}</p>
+                <div className="glass-card flex h-full flex-col justify-center p-6 sm:p-8">
+                  <h3 className="mb-3 text-base font-medium text-white sm:mb-4 sm:text-lg">{b.title}</h3>
+                  <p className="text-sm leading-relaxed text-white/40">{b.desc}</p>
                 </div>
               )}
             </ScrollReveal>
@@ -227,21 +233,21 @@ export function FeaturesSection() {
 
 export function CPShowcase() {
   return (
-    <section className="py-24 grid-bg border-t border-white/10">
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <section className="grid-bg border-t border-white/10 px-4 py-16 sm:py-20 md:py-24">
+      <div className="container mx-auto">
+        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
           <ScrollReveal>
-            <span className="text-xs font-mono text-[#FF8C42] uppercase tracking-wider">Competitive Programming</span>
-            <h2 className="text-3xl md:text-4xl font-light mt-2 mb-4">Structured. Analytical. Performance-driven.</h2>
-            <p className="text-white/40 mb-6">Live contests, problem archives, real-time leaderboards, and rating systems inspired by the best competitive programming platforms.</p>
+            <span className="text-xs font-mono uppercase tracking-wider text-[#FF8C42]">Competitive Programming</span>
+            <h2 className="mt-2 mb-4 text-2xl font-light sm:text-3xl md:text-4xl">Structured. Analytical. Performance-driven.</h2>
+            <p className="mb-6 text-sm text-white/40 sm:text-base">Live contests, problem archives, real-time leaderboards, and rating systems inspired by the best competitive programming platforms.</p>
             <Link href="/contests">
-              <Button variant="outline" className="rounded-full border-white/20 hover:border-[#FF8C42]/50">
+              <Button variant="outline" className="w-full rounded-full border-white/20 hover:border-[#FF8C42]/50 sm:w-auto">
                 View Contests <ChevronRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
-            <div className="glass-card p-6 font-mono text-sm">
+            <div className="glass-card p-4 font-mono text-xs sm:p-6 sm:text-sm">
               <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
                 <span className="text-white/40">Weekly Challenge #142</span>
                 <span className="badge-lime text-xs px-2 py-0.5 rounded-full">LIVE</span>
@@ -263,26 +269,26 @@ export function CPShowcase() {
 
 export function HackathonShowcase() {
   return (
-    <section className="py-24 mesh-bg border-t border-white/10">
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <section className="mesh-bg border-t border-white/10 px-4 py-16 sm:py-20 md:py-24">
+      <div className="container mx-auto">
+        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
           <ScrollReveal delay={0.2} className="order-2 lg:order-1">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
               {['AI Code Reviewer', 'EcoTrack', 'DeFi Dashboard', 'HealthBot'].map((p) => (
-                <div key={p} className="glass-card p-4 rounded-3xl">
-                  <div className="h-24 bg-gradient-to-br from-[#FF8C42]/20 to-[#4A90D9]/10 rounded-2xl mb-3" />
+                <div key={p} className="glass-card rounded-3xl p-4">
+                  <div className="mb-3 h-20 rounded-2xl bg-gradient-to-br from-[#FF8C42]/20 to-[#4A90D9]/10 sm:h-24" />
                   <p className="text-sm font-medium">{p}</p>
-                  <p className="text-xs text-white/40 mt-1">Innovate 2026</p>
+                  <p className="mt-1 text-xs text-white/40">Innovate 2026</p>
                 </div>
               ))}
             </div>
           </ScrollReveal>
           <ScrollReveal className="order-1 lg:order-2">
-            <span className="text-xs font-mono text-lime uppercase tracking-wider">Hackathons</span>
-            <h2 className="text-3xl md:text-4xl font-light mt-2 mb-4">Creative. Collaborative. Innovation-focused.</h2>
-            <p className="text-white/40 mb-6">Build projects, form teams, get mentored, and compete for prizes in a completely different experience.</p>
+            <span className="text-xs font-mono uppercase tracking-wider text-lime">Hackathons</span>
+            <h2 className="mt-2 mb-4 text-2xl font-light sm:text-3xl md:text-4xl">Creative. Collaborative. Innovation-focused.</h2>
+            <p className="mb-6 text-sm text-white/40 sm:text-base">Build projects, form teams, get mentored, and compete for prizes in a completely different experience.</p>
             <Link href="/hackathons">
-              <Button className="rounded-full bg-gradient-to-r from-[#FF8C42] to-[#FFB088] text-black hover:opacity-90 border-0">
+              <Button className="w-full rounded-full border-0 bg-gradient-to-r from-[#FF8C42] to-[#FFB088] text-black hover:opacity-90 sm:w-auto">
                 Browse Hackathons <ChevronRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
@@ -302,16 +308,16 @@ export function FAQSection() {
   ];
 
   return (
-    <section className="py-24 border-t border-white/10">
-      <div className="container mx-auto px-4 max-w-2xl">
-        <ScrollReveal className="text-center mb-12">
-          <h2 className="text-3xl font-light mb-4">Frequently asked questions</h2>
+    <section className="border-t border-white/10 px-4 py-16 sm:py-20 md:py-24">
+      <div className="container mx-auto max-w-2xl">
+        <ScrollReveal className="mb-8 text-center sm:mb-12">
+          <h2 className="mb-4 text-2xl font-light sm:text-3xl">Frequently asked questions</h2>
         </ScrollReveal>
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {faqs.map((faq) => (
             <ScrollReveal key={faq.q}>
-              <div className="glass-card p-5">
-                <h3 className="font-medium mb-2">{faq.q}</h3>
+              <div className="glass-card p-4 sm:p-5">
+                <h3 className="mb-2 text-sm font-medium sm:text-base">{faq.q}</h3>
                 <p className="text-sm text-white/40">{faq.a}</p>
               </div>
             </ScrollReveal>
@@ -330,18 +336,18 @@ export function TestimonialsSection() {
   ];
 
   return (
-    <section className="py-24 border-t border-white/10">
-      <div className="container mx-auto px-4">
-        <ScrollReveal className="text-center mb-16">
-          <h2 className="text-3xl font-light mb-4">Trusted by developers worldwide</h2>
+    <section className="border-t border-white/10 px-4 py-16 sm:py-20 md:py-24">
+      <div className="container mx-auto">
+        <ScrollReveal className="mb-10 text-center sm:mb-16">
+          <h2 className="mb-4 text-2xl font-light sm:text-3xl">Trusted by developers worldwide</h2>
         </ScrollReveal>
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 md:grid-cols-3">
           {testimonials.map((t) => (
             <ScrollReveal key={t.name}>
-              <div className="glass-card p-6">
-                <p className="text-white/40 mb-4">&ldquo;{t.quote}&rdquo;</p>
+              <div className="glass-card h-full p-5 sm:p-6">
+                <p className="mb-4 text-sm text-white/40 sm:text-base">&ldquo;{t.quote}&rdquo;</p>
                 <div>
-                  <p className="font-medium">{t.name}</p>
+                  <p className="text-sm font-medium sm:text-base">{t.name}</p>
                   <p className="text-xs text-white/40">{t.role}</p>
                 </div>
               </div>

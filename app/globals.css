@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;1,400;1,500&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
@@ -56,6 +56,7 @@
 
   --font-sans: 'Geist', 'Inter', sans-serif;
   --font-display: 'Geist', sans-serif;
+  --font-hero: 'Orbitron', 'Geist', sans-serif;
   --font-mono: 'Geist Mono', monospace;
   --font-serif: 'Playfair Display', Georgia, serif;
 
@@ -238,6 +239,51 @@
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
+}
+
+@keyframes marquee-ltr {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+.logo-marquee-track {
+  animation: marquee-ltr 32s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-marquee-track {
+    animation: none;
+  }
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mobile nav — full-screen glass overlay */
+.mobile-nav-overlay {
+  background: rgba(0, 0, 0, 0.94);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+}
+
+.mobile-nav-cta {
+  background: linear-gradient(135deg, #FF8C42 0%, #FFB088 100%);
+  border: none;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.15) inset,
+    0 4px 20px rgba(255, 140, 66, 0.25);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.mobile-nav-cta:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
 }
 
 @media (prefers-reduced-motion: reduce) {

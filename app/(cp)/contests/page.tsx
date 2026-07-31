@@ -103,7 +103,7 @@ export default function ContestsPage() {
               className="pl-11 h-12 rounded-full bg-white/[0.04] border-white/10 backdrop-blur-xl text-white placeholder:text-white/30 focus:border-[#FF8C42]/40"
             />
           </div>
-          <div className="flex items-center gap-2 overflow-x-auto pb-1">
+          <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
             {statusFilters.map((f) => (
               <button
                 key={f.value}
